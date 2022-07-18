@@ -80,22 +80,23 @@ Add Purchase
                             <option value="2">Pending</option>
                         </select>
                     </div>
-                    <div class="col-md-6 mt-3 credit" style="display: none;">
+                    
+                    <div class="col-md-6 mt-3">
+                        <label for="">Attach Document </label>
+                        <input type="file" name="document" class="form-control" required>
+                    </div>
+                    <div class="col-md-3 mt-3 credit" style="display: none;">
                         <label for="">Pay Ammount </label>
                         <input type="text" name="pay_amount" class="form-control payamount" >
                         <span id="showerrornew"></span>
                     </div>
 
-                    <div class="col-md-6 mt-3 credit" style="display: none;">
+                    <div class="col-md-3 mt-3 credit" style="display: none;">
                         <label for="">Due Ammount </label>
                         <input type="text" readonly name="due_amount"  class="form-control due_amount all_total " >
                     </div>
 
 
-                    <div class="col-md-6 mt-3">
-                        <label for="">Attach Document </label>
-                        <input type="file" name="document" class="form-control" required>
-                    </div>
 
                     <div class="col-md-12 mt-3">
                         <table class="table">

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\File;
 
 class SaleController extends Controller
 {
+    
     public function Sale()
     {
         $sale = Purchase::with('ware')->where('type','sale')->get();
