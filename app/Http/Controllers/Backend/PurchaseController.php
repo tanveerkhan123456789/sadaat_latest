@@ -228,11 +228,14 @@ class PurchaseController extends Controller
         $purchase->shipping_cost = $request->shipping_cost;
         $purchase->note = $request->note;
         $purchase->total_qty = $request->total_qty;
-        $purchase->total_cost = $request->total_cost;
         $purchase->order_discount = $request->order_discount;
         $purchase->shipping_cost = $request->shipping_cost;
         $purchase->grand_total = $request->grand_total;
-        $purchase->due_ammount = $request->grand_total;
+        if($request->payment_status==2)
+{
+        $purchase->due_ammount = $request->due_amount;
+        $purchase->paid_amount = $request->pay_amount;
+
         $purchase->item = $request->item;
         $purchase->type = 'purchase';
 
@@ -246,6 +249,25 @@ class PurchaseController extends Controller
         }
 
         $purchase->save();
+    }
+    else{
+        $purchase->due_ammount = '0';
+        $purchase->paid_amount =$request->grand_total;
+
+        $purchase->item = $request->item;
+        $purchase->type = 'purchase';
+
+        if ($request->hasFile('document')) {
+
+            $file = $request->file('document');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('storage/app/public/uploads/document/', $filename);
+            $purchase->document = $filename;
+        }
+
+        $purchase->save();
+    }
 
 
         for ($i = 0; $i < $size; $i++) {
@@ -273,7 +295,7 @@ class PurchaseController extends Controller
         { 
             $account=new Account();
             $account->supplier_id=$request->supplier_id;
-            $account->user_id=$request->user_id;
+            $account->user_id=$user_id;
             $account->purchase_id=$purchase->id;
             $account->pay_amount=$request->pay_amount;
             $account->due_amount=$request->due_amount;
@@ -284,9 +306,9 @@ $account->save();
         else{
             $account=new Account();
             $account->supplier_id=$request->supplier_id;
-            $account->user_id=$request->user_id;
+            $account->user_id=$user_id;
             $account->purchase_id=$purchase->id;
-            $account->pay_amount=$request->pay_amount;
+            $account->pay_amount=$request->grand_total;
             $account->due_amount='0';
 $account->save();
 

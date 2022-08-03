@@ -88,13 +88,17 @@ Add Purchase
                     <div class="col-md-3 mt-3 credit" style="display: none;">
                         <label for="">Pay Ammount </label>
                         <input type="text" name="pay_amount" class="form-control payamount" >
-                        <span id="showerrornew"></span>
+                        <span class="qty-error" style="color: red; font-weight:bold;"></span>
                     </div>
 
                     <div class="col-md-3 mt-3 credit" style="display: none;">
                         <label for="">Due Ammount </label>
                         <input type="text" readonly name="due_amount"  class="form-control due_amount all_total " >
+
                     </div>
+
+
+
 
 
 
@@ -294,17 +298,21 @@ Add Purchase
                 } 
                 else if(parseFloat(a) < parseFloat(payamount))
                   {
-                    toastr.error('Pay Amount '+payamount+'  is Greater then Due Amount '+a);
+                    // toastr.error('Pay Amount '+payamount+'  is Greater then Due Amount '+a);
+                
+                        var p = '<span style="color:red">Pay amount is greater Due amount </span>';
+                        $currentRow=$('.qty-error').html(p);
+                        var mult = a - payamount;
 
-                    var mult = a - payamount;
-                    
-                    var a = $('.due_amount').val(a);
+                    // var a = $('.due_amount').val(a);
 
                   }
                 else {
 
                     var a = $('.due_amount').text(mult);
                     var a = $('.due_amount').val(mult);
+                    var p = '';
+                    $currentRow=$('.qty-error').html(p);
 
                 }
 
