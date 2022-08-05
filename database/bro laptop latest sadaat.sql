@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2022 at 11:41 PM
+-- Generation Time: Aug 05, 2022 at 11:24 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -43,7 +43,8 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `user_id`, `purchase_id`, `supplier_id`, `pay_amount`, `due_amount`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 12, '10', '870', '2022-07-04 12:46:58', '2022-07-04 12:46:58.000000');
+(1, NULL, 1, 1, NULL, '0', '2022-07-21 16:17:56', '2022-07-21 16:17:56.000000'),
+(2, '1', 2, 1, '20000', '774', '2022-07-21 16:21:25', '2022-07-21 16:21:25.000000');
 
 -- --------------------------------------------------------
 
@@ -435,7 +436,8 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `user_id`, `warehouse_id`, `type`, `supplier_id`, `item`, `total_qty`, `total_discount`, `customer_id`, `total_cost`, `order_discount`, `shipping_cost`, `grand_total`, `due_ammount`, `paid_amount`, `payment_status`, `document`, `note`, `staf_note`, `order_status`, `created_at`, `updated_at`) VALUES
-(1, '1', 9, 'purchase', 12, 1, 176, NULL, NULL, 880, '1', '34', 871.2, '871.2', NULL, 2, '1656942418.jpg', 'Culpa dolor enim tem', NULL, NULL, '2022-07-04', '2022-07-04 12:46:58');
+(1, '1', 9, 'purchase', 1, 1, 611, NULL, NULL, NULL, '0', '34', 1833, '0', 1833, 1, '1658423876.png', 'Commodi sit volupta', NULL, NULL, '2022-07-21', '2022-07-21 16:17:56'),
+(2, '1', 9, 'purchase', 1, 1, 611, NULL, NULL, NULL, NULL, NULL, 20774, '774', 20000, 2, '1658424085.png', 'Commodi sit volupta', NULL, NULL, '2022-07-21', '2022-07-21 16:21:25');
 
 -- --------------------------------------------------------
 
@@ -463,7 +465,8 @@ CREATE TABLE `purchase_products` (
 --
 
 INSERT INTO `purchase_products` (`id`, `purchase_id`, `product_id`, `name`, `code`, `qty`, `net_unit_cost`, `total`, `created_at`, `updated_at`, `avaiable_stock`, `sale_price`) VALUES
-(1, 1, 5, 'Ignatius Hood', NULL, '176', '5', '880', '2022-07-04 12:46:58', '2022-07-04 12:46:58', '176', '480');
+(1, 1, 5, 'Ignatius Hood', NULL, '611', '3', '1833', '2022-07-21 16:17:56', '2022-07-21 16:17:56', '611', '293'),
+(2, 2, 4, 'Judith Oliver', NULL, '611', '34', '20774', '2022-07-21 16:21:25', '2022-07-21 16:21:25', '611', '293');
 
 -- --------------------------------------------------------
 
@@ -976,7 +979,7 @@ ALTER TABLE `ware_houses`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -1042,13 +1045,13 @@ ALTER TABLE `product_sales`
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `purchase_products`
 --
 ALTER TABLE `purchase_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
